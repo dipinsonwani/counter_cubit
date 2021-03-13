@@ -40,8 +40,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: BlocListener<CounterCubit, CounterState>(
-        listener: (context, state) {
+      body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed the button this many times:',
+              ),
+              //BlocConsumer can have both builder and listener, replaces BlocBuilder and BlocListener
+              BlocConsumer<CounterCubit, CounterState>(
+                listener: (context, state) {
           if (state.wasIncremented == true) {
             Scaffold.of(context).showSnackBar(
               SnackBar(
@@ -51,14 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           }
         },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              BlocBuilder<CounterCubit, CounterState>(
                 builder: (context, state) => Text(
                   '${state.counterValue}',
                   style: Theme.of(context).textTheme.headline4,
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }
