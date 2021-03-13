@@ -54,16 +54,20 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FloatingActionButton(
                   onPressed: () {
-                    context.read<CounterCubit>().increment();
+                    context.read<CounterCubit>().decrement();
                   },
                   tooltip: 'Decrement',
                   child: Icon(Icons.remove),
                 ),
                 FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //another way
+                    BlocProvider.of<CounterCubit>(context).increment();
+                  },
                   tooltip: 'Increment',
                   child: Icon(Icons.add),
                 ),
