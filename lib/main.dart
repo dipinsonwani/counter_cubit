@@ -47,7 +47,28 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'You have pushed the button this many times:',
             ),
+            BlocBuilder<CounterCubit, CounterState>(
+              builder: (context, state) => Text(
+                '${state.counterValue}',
+                style: Theme.of(context).textTheme.headline4,
+              ),
             ),
+            Row(
+              children: <Widget>[
+                FloatingActionButton(
+                  onPressed: () {
+                    context.read<CounterCubit>().increment();
+                  },
+                  tooltip: 'Decrement',
+                  child: Icon(Icons.remove),
+                ),
+                FloatingActionButton(
+                  onPressed: () {},
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                ),
+              ],
+            )
           ],
         ),
       ),
